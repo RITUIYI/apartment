@@ -10,9 +10,9 @@ function App() {
           <Route path='/layout' component={Layout} />
 
           <Redirect exact from="/" to='/layout' />
-        
+
         </Switch>
-      
+
       </HashRouter>
     </div>
   );

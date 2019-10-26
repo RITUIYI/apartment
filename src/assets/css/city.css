@@ -13,6 +13,9 @@
 .city_wrap.slideUp{
     height:100%;
 }
+.city_wrap.slideDown{
+    height: 0;
+}
 
 .city_title{
     height:2.75rem; 
