@@ -2,17 +2,37 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { hireGroup } from '../../../api/home'
 import { baseURL } from '../../../utils/http/config'
+import store from '../../../redux/index'
 class Groups extends Component {
     constructor() {
         super();
         this.state = {
-            aHireGroups: []
-        }
+            aHireGroups: [],
+            areaId: store.getState().locatCity.value
+        };
+        this.unsubscribed = store.subscribe(this.updateData)
     }
     async componentDidMount() {
-        let aGroups = await hireGroup();
+
+        let aGroups = await hireGroup(this.state.areaId);
         this.setState({
             aHireGroups: aGroups.data.body
+        })
+    }
+
+    componentWillUnmount = () => {
+        this.unsubscribed();
+    }
+
+    updateData = () => {
+
+        this.setState({
+            areaId: store.getState().locatCity.value
+        }, async () => {
+            let aGroups = await hireGroup(this.state.areaId);
+            this.setState({
+                aHireGroups: aGroups.data.body
+            })
         })
     }
 

@@ -8,9 +8,12 @@ export const getSwiper = () => {
 }
 
 //租房小组
-export const hireGroup = () => {
+export const hireGroup = (areaId) => {
     return host({
-        url: '/home/groups'
+        url: '/home/groups',
+        params: {
+            area: areaId
+        }
     })
 }
 

@@ -1,4 +1,5 @@
-export const formatCityList = (allcity) => {
+//城市列表处理
+export const formatCityList = ({ allcity, location, hotcity }) => {
     allcity.forEach(item => {
         item.charCode = item.short[0].charCodeAt();
     })
@@ -15,7 +16,10 @@ export const formatCityList = (allcity) => {
     let aList = Object.keys(aCityList).sort();
     let aCitylists = aList.map(item => {
         return aCityList[item];
-    })
+    });
+    aList.unshift('#','热');
+    
+    aCitylists.unshift([location], hotcity);
     let obj = { aCitylists, aList }
     return obj;
 }
